@@ -38,11 +38,6 @@ ifeq ($(DEBUG),true)
 LDPF_UI_FLAGS += -D'LDPF_EXAMPLE02_LUA_PATH="$(shell pwd)/lua/?.lua;$(shell pwd)/lua/?/init.lua"'
 endif
 
-# List of needed LDPF components:
-LDPF_COMPONENTS := $(LDPF_ROOT_PATH)/ldpf/components/lpugl        \
-                   $(LDPF_ROOT_PATH)/ldpf/components/lpugl_opengl \
-                   $(LDPF_ROOT_PATH)/ldpf/components/nvg
-
 # Path to plugin's lua source modules root directory. Non *.lua files in
 # this directory are handled as resource files and will also be 
 # included in the plugin.
@@ -60,6 +55,7 @@ include $(LDPF_ROOT_PATH)/ldpf/Makefile.plugins.mk
 
 # --------------------------------------------------------------
 # Recompile for definition changes in this Makefile
+
 $(BUILD_DIR)/Example02UI.cpp.o: $(THIS_MAKEFILE)
 
 
