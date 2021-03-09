@@ -1,0 +1,6 @@
+[submodule "dpf"]
+	path = dpf
+	url = git@github.com:LDPF/DPF.git
+[submodule "ldpf"]
+	path = ldpf
+	url = git@github.com:LDPF/LDPF.git

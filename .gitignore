@@ -1,0 +1,14 @@
+*.a
+*.d
+*.o
+
+*.exe
+*.dll
+*.dylib
+*.so
+
+/bin/
+/build/
+
+/thirdparty/*
+
