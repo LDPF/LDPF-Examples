@@ -9,6 +9,16 @@
 # --------------------------------------------------------------
 
 # --------------------------------------------------------------
+# Setting up basic variables
+# --------------------------------------------------------------
+
+# Path to the root directory, where dpf and ldpf subdirectories
+# are located:
+LDPF_ROOT_PATH  := ../..
+
+include $(LDPF_ROOT_PATH)/ldpf/Makefile.base.mk
+
+# --------------------------------------------------------------
 # This Makefile for dependencies (see below)
 THIS_MAKEFILE := ./Makefile
 
@@ -29,10 +39,6 @@ FILES_UI = \
 # Parameters for LDPF
 # --------------------------------------------------------------
 
-# Path to the root directory, where dpf and ldpf subdirectories
-# are located:
-LDPF_ROOT_PATH  := ../..
-
 ifeq ($(DEBUG),true)
 # Lua modules path for overriding builtin Lua modules for debugging purposes.
 LDPF_UI_FLAGS += -D'LDPF_EXAMPLE01_LUA_PATH="$(shell pwd)/lua/?.lua;$(shell pwd)/lua/?/init.lua"'
@@ -45,7 +51,7 @@ LDPF_LUA_SOURCE_PATH := lua
 
 
 # --------------------------------------------------------------
-# Do some magic
+# include generic makefile for plugins
 
 include $(LDPF_ROOT_PATH)/ldpf/Makefile.plugins.mk
 
