@@ -7,6 +7,7 @@ LDPF_COMPONENTS := $(LDPF_ROOT_PATH)/ldpf/components/lpugl \
                    $(LDPF_ROOT_PATH)/ldpf/components/oocairo \
                    $(LDPF_ROOT_PATH)/ldpf/components/nvg     \
                    $(LDPF_ROOT_PATH)/ldpf/components/lwtk    \
+                   $(LDPF_ROOT_PATH)/ldpf/components/luautf8 \
                    \
                    $(LDPF_ROOT_PATH)/ldpf/components/cairo   \
                    $(LDPF_ROOT_PATH)/ldpf/components/pixman  \
