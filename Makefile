@@ -13,7 +13,8 @@ LDPF_ROOT_PATH   := .
 
 # List of plugin directories
 LDPF_PLUGINS := plugins/example01 \
-                plugins/example02
+                plugins/example02 \
+                plugins/example03
 
 
 # --------------------------------------------------------------

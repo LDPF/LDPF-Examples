@@ -1,7 +1,8 @@
 
 # List of all component directories
 #
-LDPF_COMPONENTS := $(LDPF_ROOT_PATH)/ldpf/components/lpugl \
+LDPF_COMPONENTS := $(LDPF_ROOT_PATH)/ldpf/components/ldpfgui \
+                   $(LDPF_ROOT_PATH)/ldpf/components/lpugl \
                    $(LDPF_ROOT_PATH)/ldpf/components/lpugl_cairo \
                    $(LDPF_ROOT_PATH)/ldpf/components/lpugl_opengl \
                    $(LDPF_ROOT_PATH)/ldpf/components/oocairo \

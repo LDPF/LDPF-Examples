@@ -23,9 +23,13 @@ local ctx
 
 local view = world:newView
 {
-    title  = "ldpf-example02",
-    parent = ldpf.parentWindowId, -- nil if running as standalone application
-    size   = {300*scale, 100*scale},
+    title   = "ldpf-example02",
+    parent  = ldpf.parentWindowId, -- nil if running as standalone application
+
+    size    = {300*scale, 100*scale},
+    minSize = {200*scale,  50*scale},
+    maxSize = {500*scale, 300*scale},
+
     resizable = true,
     
     eventFunc = function(view, event, ...)
@@ -75,7 +79,7 @@ view:show()
 ----------------------------------------------------------------------------------------------------------
 -- Implement callbacks for LDPF
 
-function ldpf.getWindowId()
+function ldpf.getNativeWindowHandle()
     return view:getNativeHandle()
 end
 
