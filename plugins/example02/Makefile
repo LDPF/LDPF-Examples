@@ -34,7 +34,7 @@ FILES_UI = \
 # Pparameters for LDPF
 # --------------------------------------------------------------
 
-ifeq ($(DEBUG),true)
+ifeq ($(LUA_DEBUG),true)
 # Lua modules path for overriding builtin Lua modules for debugging purposes.
 LDPF_UI_FLAGS += -D'LDPF_EXAMPLE02_LUA_PATH="$(shell pwd)/lua/?.lua;$(shell pwd)/lua/?/init.lua"'
 endif
