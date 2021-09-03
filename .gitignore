@@ -10,5 +10,9 @@
 /bin/
 /build/
 
-/thirdparty/*
+/thirdparty/cairo
+/thirdparty/pixman
+/thirdparty/libpng
+/thirdparty/zlib
+
 

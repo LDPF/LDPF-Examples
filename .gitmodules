@@ -4,3 +4,18 @@
 [submodule "ldpf"]
 	path = ldpf
 	url = git@github.com:LDPF/LDPF.git
+[submodule "thirdparty/lpugl"]
+	path = thirdparty/lpugl
+	url = git@github.com:osch/lua-lpugl.git
+[submodule "thirdparty/lwtk"]
+	path = thirdparty/lwtk
+	url = git@github.com:osch/lua-lwtk.git
+[submodule "thirdparty/oocairo"]
+	path = thirdparty/oocairo
+	url = git@github.com:osch/oocairo.git
+[submodule "thirdparty/luautf8"]
+	path = thirdparty/luautf8
+	url = git@github.com:starwing/luautf8.git
+[submodule "thirdparty/nvg"]
+	path = thirdparty/nvg
+	url = git@github.com:osch/lua-nanovg.git

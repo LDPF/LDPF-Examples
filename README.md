@@ -30,7 +30,7 @@ C-Compiler and [GNU-Make]. Windows build has been tested using [MSYS2]. For MacO
   $ git clone --recurse-submodules git@github.com:LDPF/LDPF-Examples.git
   ```
 
-* Download thirdparty source code for required components:
+* For Windows and MacOS: Download source code for additional required components:
 
   ```shell
   $ cd LDPF-Examples
@@ -55,6 +55,9 @@ C-Compiler and [GNU-Make]. Windows build has been tested using [MSYS2]. For MacO
   this directory already exists. Some components don't need a download (e.g. 
   [ldpfgui] has its source code included; [lpugl_cairo] and [lpugl_openl]
   are sharing the source code with [component lpugl]).
+  
+  The source code for components that are required for all three platforms are
+  already contained as git submodules in the `thirdparty` directory.
 
 * Build the plugins. You may use the `-jN` option to speed up build time by using N processes in parallel, e.g.
 
