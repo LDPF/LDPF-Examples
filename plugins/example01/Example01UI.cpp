@@ -14,16 +14,16 @@
  * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include "../../ldpf/ldgl/LuaInitParams.hpp"
+#include "../../ldpf/src/LuaUI.hpp"
 
 // -----------------------------------------------------------------------
-START_NAMESPACE_LDGL
+START_NAMESPACE_LDPF
 // -----------------------------------------------------------------------
 
 /**
  *  Initial parameters to be provided by PluginUI.
  */
-static LuaInitParams initParams(
+static LuaUI::InitParams initParams(
     /**
      * Lua modules path for overriding builtin Lua modules for debugging purposes.
      */
@@ -41,15 +41,13 @@ static LuaInitParams initParams(
     "LDPF_EXAMPLE01_LUA_PATH"
 );
 
-/**
- *  This function has to be implemented by PluginUI.
- */
-LuaInitParams* getLuaInitParams()
+LuaUI* createLuaUI()
 {
-        printf("=============== LuaExamplUI run\n");
-    return &initParams;
+    printf("=============== LuaExamplUI run\n");
+    return new LuaUI(&initParams);
 }
 
 // -----------------------------------------------------------------------
-END_NAMESPACE_LDGL
+END_NAMESPACE_LDPF
 // -----------------------------------------------------------------------
+

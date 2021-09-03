@@ -74,6 +74,8 @@ local view = world:newView
         end
     end
 }
+
+ldpf.setSize(view:getSize())
 view:show()
 
 ----------------------------------------------------------------------------------------------------------
@@ -90,34 +92,14 @@ function ldpf.parameterChanged(index, value)
     end
 end
 
-function ldpf.getWidth()
-    local w,h = view:getSize()
-    return w
-end
-
-function ldpf.getHeight()
-    local w,h = view:getSize()
-    return h
-end
-
--- update callback if plugin ui is embedded in host
+-- update callback 
 function ldpf.idle()
     if lpugl.platform ~= "MAC" then
         world:update(0)
     end
-    return world:hasViews()
-end
-
--- update loop if plugin is running standalone
-function ldpf.exec(idleCallback)
-    while world:hasViews() do
-        world:update(0.030)
-        idleCallback()
+    if not ldpf.parentWindowId and not world:hasViews() then
+        ldpf.close()
     end
-end
-
-function ldpf.close()
-    view:close()
 end
 
 ----------------------------------------------------------------------------------------------------------
