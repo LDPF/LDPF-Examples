@@ -1,4 +1,5 @@
 # LDPF - Lua GUI for DISTRHO Plugin Framework
+[![build status](https://github.com/LDPF/LDPF-Examples/workflows/build/badge.svg)](https://github.com/LDPF/LDPF-Examples/actions/workflows/build.yml)
 
 
 LDPF is an extension for [DPF] (DISTRHO Plugin Framework) that makes it 

@@ -1,0 +1,117 @@
+name: build
+
+on: [push]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { target: 'Linux-x64',   os: 'ubuntu-latest',  shell: 'bash' }
+          - { target: 'Windows-x64', os: 'windows-latest', sys: 'mingw64', pkgpref: 'mingw-w64-x86_64', shell: 'msys2 {0}' }
+          - { target: 'Windows-x86', os: 'windows-latest', sys: 'mingw32', pkgpref: 'mingw-w64-i686',   shell: 'msys2 {0}' }
+          - { target: 'MacOS',       os: 'macos-latest',   shell: 'bash' }
+
+    runs-on: ${{matrix.os}}
+
+    defaults:
+      run:
+        shell: ${{matrix.shell}}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+        with:
+          submodules: recursive
+
+      - name: setup-linux
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get install xvfb libglu1-mesa-dev freeglut3-dev mesa-common-dev
+
+      - name: setup-msys
+        if: matrix.os == 'windows-latest'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: ${{matrix.sys}}
+          #update: true
+          install: git make ${{matrix.pkgpref}}-gcc zip unzip
+  
+      - name: setup-macos
+        if: matrix.os == 'macos-latest'
+        run: |
+
+      - name: prepare-linux
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          echo "LDPF_LDD_TOOL=/usr/bin/ldd" >> $GITHUB_ENV
+
+      - name: prepare-msys 
+        if: matrix.os == 'windows-latest'
+        run: |
+          export PATH="/${{matrix.sys}}/bin"
+          echo "PATH=$PATH" >> $GITHUB_ENV
+          echo "MSYSTEM=$MSYSTEM"
+          echo "PATH=$PATH"
+          type gcc
+          gcc -v
+
+      - name: prepare-macos
+        if: matrix.os == 'macos-latest'
+        run: |
+          echo "LDPF_LDD_TOOL=/usr/bin/otool -L" >> $GITHUB_ENV
+
+
+      - name: print-env 
+        run: |
+          set
+
+      - name: download 
+        if: matrix.os == 'windows-latest' || matrix.os == 'macos-latest'
+        run: |
+          make download-components
+          
+      - name: build 
+        run: |
+          make -j8
+          
+      - name: display-size 
+        run: |
+          cd bin
+          du -sh *
+          
+
+      - name: display-dynamic-libs
+        run: |
+          cd bin
+          echo "---------------------------------"
+          export PATH=.
+          for i in `/usr/bin/find . -type f`
+          do echo "-- $i ---------------------------"
+             $LDPF_LDD_TOOL $i || true
+          done
+          echo "---------------------------------"
+          
+
+      - name: display-symbols
+        run: |
+          cd bin
+          echo "---------------------------------"
+          for i in `/usr/bin/find . -type f`
+          do echo "-- $i ---------------------------"
+             /bin/nm -Dg $i || true
+          done
+          echo "---------------------------------"
+          
+
+      - name: zip
+        run: |
+          mkdir zip
+          mv bin zip/LDPF-Examples-${{matrix.target}}
+          
+      - name: upload-artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: LDPF-Examples-${{matrix.target}}
+          path: zip
